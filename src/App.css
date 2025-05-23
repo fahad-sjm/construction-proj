@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  margin: 0;
+  padding: 0;
+}
+
+.appRoot {
+  display: flex;
+  min-height: 100vh;
+  background: #f3f4f6;
+}
+.mainContent {
+  flex: 1;
+  padding: 32px 48px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.dashboardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.searchBar {
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  box-shadow: 0 1px 4px rgba(30,40,90,0.06);
+  width: 320px;
+  outline: none;
+}
+.profilePic img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #2563eb;
+}
+@media (max-width: 900px) {
+  .mainContent {
+    padding: 24px 8px 24px 8px;
+  }
+  .dashboardHeader .searchBar {
+    width: 160px;
+  }
+}
+@media (max-width: 700px) {
+  .appRoot {
+    flex-direction: column;
+  }
+  .mainContent {
+    padding: 12px 2vw;
+  }
+} 

@@ -1,0 +1,86 @@
+.chartsRow {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.chartCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(30,40,90,0.06);
+  padding: 24px 32px;
+  min-width: 340px;
+  flex: 1;
+}
+.chartTitle {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+.barChart {
+  display: flex;
+  align-items: flex-end;
+  height: 160px;
+  gap: 18px;
+}
+.barCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.barContainer {
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+}
+.bar {
+  width: 28px;
+  background: #2563eb;
+  border-radius: 8px 8px 0 0;
+  transition: height 0.3s;
+  min-height: 4px;
+  display: block;
+}
+.barLabel {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #6b7280;
+}
+.barValue {
+  font-size: 0.95rem;
+  color: #374151;
+  margin-bottom: 4px;
+}
+.pieChartWrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.pieChart {
+  width: 110px;
+  height: 110px;
+  transform: rotate(-90deg);
+}
+.pieBg {
+  stroke: #e5e7eb;
+}
+.pieLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  color: #374151;
+}
+.legendColor {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  display: inline-block;
+} 

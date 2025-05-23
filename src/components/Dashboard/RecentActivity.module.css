@@ -1,0 +1,35 @@
+.activityRow {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.activityCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(30,40,90,0.06);
+  padding: 24px 32px;
+  min-width: 340px;
+  flex: 1;
+}
+.cardTitle {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+.table th, .table td {
+  padding: 8px 10px;
+  text-align: left;
+}
+.table th {
+  color: #1e293b;
+  font-weight: 600;
+  background: #e0e7ff;
+}
+.table tr:not(:last-child) td {
+  border-bottom: 1px solid #e5e7eb;
+} 

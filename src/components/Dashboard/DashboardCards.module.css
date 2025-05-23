@@ -1,0 +1,30 @@
+.cardsRow {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.card, .cardHighlight {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(30, 40, 90, 0.06);
+  padding: 24px 32px;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.cardHighlight {
+  background: #e0e7ff;
+  color: #1a2332;
+  font-weight: 600;
+}
+.value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.label {
+  font-size: 1.08rem;
+  color: #6b7280;
+} 
