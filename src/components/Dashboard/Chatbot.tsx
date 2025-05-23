@@ -92,19 +92,25 @@ const Chatbot: React.FC = () => {
 
   return (
     <div
-      className={styles.chatbot}
+      className={`
+        ${styles.chatbot}
+        ${minimized ? styles.chatbotMinimized : expanded ? styles.chatbotExpanded : styles.chatbotDefault}
+      `}
+      // Inline styles for zIndex and transitions are kept as they are less about state
+      // and more about the fundamental behavior of the component.
+      // Or, zIndex could be in styles.chatbot and transition in individual state classes if preferred.
+      // For now, keeping zIndex here as it's a stacking context concern.
+      // Transition is also in the main .chatbot class in CSS.
       style={{
-        width: minimized ? 260 : (expanded ? EXPANDED_WIDTH : DEFAULT_WIDTH),
-        height: minimized ? 48 : (expanded ? EXPANDED_HEIGHT : DEFAULT_HEIGHT),
-        minHeight: minimized ? 48 : 200,
-        minWidth: 260,
         zIndex: 1000,
-        transition: 'box-shadow 0.2s, width 0.3s, height 0.3s ease-in-out',
+        // Dynamic variables for expanded state, if needed for JS logic, can be set here
+        // '--expanded-width': `${EXPANDED_WIDTH}px`, // Example if CSS variables are used
+        // '--expanded-height': EXPANDED_HEIGHT, // Example
       }}
     >
       <div
         className={styles.header}
-        style={{ userSelect: 'none' }}
+        // style={{ userSelect: 'none' }} // Moved to Chatbot.module.css
       >
         <span className={styles.botIcon}>🤖</span>
         <span>AI Assistant</span>
@@ -113,7 +119,7 @@ const Chatbot: React.FC = () => {
             className={styles.expandBtn}
             title={expanded ? 'Collapse' : 'Expand'}
             onClick={e => { e.stopPropagation(); setExpanded(e => !e); }}
-            style={{ marginLeft: 8 }}
+            // style={{ marginLeft: 8 }} // Moved to Chatbot.module.css
           >
             {expanded ? '⊖' : '⊕'}
           </button>
@@ -129,7 +135,7 @@ const Chatbot: React.FC = () => {
           className={styles.resetBtn}
           title="Reset chat history"
           onClick={handleReset}
-          style={{ marginLeft: 8 }}
+          // style={{ marginLeft: 8 }} // Moved to Chatbot.module.css
         >
           ⟳
         </button>

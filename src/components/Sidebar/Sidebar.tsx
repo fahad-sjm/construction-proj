@@ -1,8 +1,12 @@
 import React from 'react';
 import styles from './Sidebar.module.css';
 
-const Sidebar: React.FC = () => (
-  <aside className={styles.sidebar}>
+interface SidebarProps {
+  className?: string; // Add className to props
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ className }) => (
+  <aside className={`${styles.sidebar} ${className || ''}`}> {/* Apply className here */}
     <div className={styles.logoSection}>
       <span className={styles.logoIcon}>🦺</span>
       <span className={styles.companyName}>CONSTRUCTION<br/>COMPANY</span>

@@ -44,17 +44,96 @@ html {
 }
 @media (max-width: 900px) {
   .mainContent {
-    padding: 24px 8px 24px 8px;
+    padding: 24px 16px; /* Increased horizontal padding */
+  }
+  .dashboardHeader {
+    margin-bottom: 24px; /* Slightly reduce margin */
   }
   .dashboardHeader .searchBar {
-    width: 160px;
+    width: 220px; /* Increased width from 160px */
+    padding: 10px 16px; /* Adjust padding slightly */
+    font-size: 0.95rem; /* Slightly reduce font size */
   }
 }
+
 @media (max-width: 700px) {
   .appRoot {
-    flex-direction: column;
+    /* flex-direction: column; */ /* This is already handled by sidebar logic effectively */
+    /* The sidebar becomes fixed, so appRoot doesn't strictly need to be column */
   }
   .mainContent {
-    padding: 12px 2vw;
+    padding: 16px; /* Changed from 12px 2vw to fixed padding */
+    transition: filter 0.3s ease-in-out; /* For blur effect */
   }
-} 
+  .dashboardHeader {
+    /* Allow items to wrap or stack if needed */
+    flex-wrap: wrap;
+    gap: 12px; /* Add gap for wrapped items */
+    margin-bottom: 20px;
+  }
+  .dashboardHeader .searchBar {
+    flex-grow: 1; /* Allow search bar to take available space */
+    min-width: 200px; /* Ensure it doesn't get too small before wrapping/growing */
+    width: auto; /* Override fixed width from previous breakpoint */
+    font-size: 0.9rem;
+  }
+  .profilePic img {
+    width: 40px; /* Slightly smaller profile pic */
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) { /* Specific adjustments for very small screens */
+  .mainContent {
+    padding: 12px;
+  }
+  .dashboardHeader {
+    flex-direction: column; /* Stack header items */
+    align-items: stretch; /* Make items take full width */
+    gap: 10px;
+  }
+  .dashboardHeader .searchBar {
+    width: 100%; /* Full width */
+    min-width: unset;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    order: 2; /* Optional: change order, e.g., profile pic first */
+  }
+  .profilePic {
+    align-self: flex-end; /* Example: move profile pic to the right if header is column */
+    order: 1; /* Optional: profile pic first */
+  }
+  .profilePic img {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1500; /* Lower than sidebar, higher than main content */
+  display: none; /* Hidden by default */
+}
+
+/* Show overlay when sidebar is open - managed by App.tsx rendering */
+/* No direct CSS class needed here if App.tsx handles rendering */
+
+/* Optional: If sidebar pushes content (not the current overlay approach) */
+/*
+.mainContent.sidebarEffect {
+  margin-left: 250px; // Same as sidebar width
+  filter: blur(2px); // Example effect
+}
+*/
+
+/* For overlay sidebar, we might want to blur the background slightly or darken it */
+.mainContent.sidebarEffect {
+  /* filter: blur(1px); */ /* Example: slight blur, can affect performance */
+  /* pointer-events: none; */ /* Prevent interaction with main content when sidebar is open */
+  /* The overlay already handles click-away, so pointer-events: none might be too restrictive */
+}

@@ -11,8 +11,74 @@
   flex-direction: column;
   z-index: 1000;
   overflow: hidden;
-  transition: box-shadow 0.2s, height 0.3s ease-in-out;
+  /* transition: box-shadow 0.2s, height 0.3s ease-in-out; */ /* Will be handled by individual state classes */
+  transition: box-shadow 0.2s, width 0.3s, height 0.3s ease-in-out;
+  min-width: 260px; /* from inline style */
 }
+
+.chatbotDefault {
+  width: 340px; /* DEFAULT_WIDTH */
+  height: 400px; /* DEFAULT_HEIGHT */
+  min-height: 200px; /* from inline style */
+}
+
+/* Add .chatbot class to increase specificity */
+.chatbot.chatbotMinimized {
+  width: 260px; /* Removed !important */
+  height: 48px; /* Removed !important */
+  min-height: 48px; /* Removed !important */
+  box-shadow: 0 2px 8px rgba(30,40,90,0.10);
+}
+
+.chatbot.chatbotMinimized .header {
+  border-radius: 16px; /* Adjusted from 16px 16px 16px 16px */
+}
+
+.chatbot.chatbotMinimized .messages,
+.chatbot.chatbotMinimized .inputRow {
+  display: none; /* Removed !important */
+}
+
+.chatbotExpanded {
+  width: var(--expanded-width, 500px); /* EXPANDED_WIDTH */
+  height: var(--expanded-height, 80vh); /* EXPANDED_HEIGHT */
+  min-height: 200px; /* from inline style */
+}
+
+/* Adjustments for expanded state flexibility */
+.chatbotExpanded {
+  /* Default for larger screens */
+  width: 500px; /* EXPANDED_WIDTH */
+  height: 80vh;   /* EXPANDED_HEIGHT */
+  max-width: 90vw; /* Ensure it doesn't get too wide on very large screens */
+  max-height: 90vh;/* Ensure it doesn't get too tall */
+}
+
+.chatbotExpanded .messages {
+  max-height: calc(var(--expanded-height, 80vh) - 120px); /* Adjust based on actual header/input height */
+}
+
+/* For smaller screens, make expanded state more responsive */
+@media (max-width: 768px) {
+  .chatbotExpanded {
+    width: 90vw;
+    height: 75vh;
+  }
+  .chatbotExpanded .messages {
+    max-height: calc(75vh - 120px);
+  }
+}
+
+@media (max-width: 480px) {
+  .chatbotExpanded {
+    width: 95vw;
+    height: 70vh;
+  }
+  .chatbotExpanded .messages {
+    max-height: calc(70vh - 110px); /* Assuming header/input might be slightly smaller */
+  }
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -23,7 +89,7 @@
   font-weight: 600;
   font-size: 1.08rem;
   justify-content: space-between;
-  user-select: none;
+  user-select: none; /* Moved from inline style */
 }
 .botIcon {
   font-size: 1.3rem;
@@ -106,43 +172,37 @@ p{
 .sendBtn:hover {
   background: #1e40af;
 }
-/* Minimized state */
-.chatbot[style*='height: 48px'] {
-  height: 48px !important;
-  min-height: 48px !important;
-  max-height: 48px !important;
-  width: 260px !important;
-  min-width: 260px !important;
-  max-width: 340px;
-  box-shadow: 0 2px 8px rgba(30,40,90,0.10);
-}
-.chatbot[style*='height: 48px'] .header {
-  border-radius: 16px 16px 16px 16px;
-}
+
+/* Minimized state styles are now in .chatbotMinimized */
+/* Removed:
+.chatbot[style*='height: 48px'] { ... }
+.chatbot[style*='height: 48px'] .header { ... }
 .chatbot[style*='height: 48px'] .messages,
-.chatbot[style*='height: 48px'] .inputRow {
-  display: none !important;
-}
+.chatbot[style*='height: 48px'] .inputRow { ... }
+*/
 
 @media (max-width: 600px) {
-  .chatbot {
-    width: 98vw !important;
-    min-width: 0 !important;
-    left: 1vw !important;
-    right: auto !important;
-    height: 60vh !important;
-    min-height: 200px !important;
-    top: auto !important;
-    bottom: 1vh !important;
+  /* Apply default responsive styles also when expanded, unless overridden by .chatbotExpanded specific media queries */
+  /* Ensure these don't apply when .chatbotMinimized is present */
+  .chatbot:not(.chatbotMinimized) {
+    width: 98vw;
+    min-width: 0;
+    left: 1vw;
+    right: auto;
+    height: 60vh;
+    min-height: 200px;
+    top: auto;
+    bottom: 1vh;
     border-radius: 12px;
   }
   .header {
     font-size: 1rem;
     padding: 10px 12px;
   }
-  .messages {
+  /* Ensure these don't apply when .chatbotMinimized is present */
+  .chatbot:not(.chatbotMinimized) .messages {
     padding: 10px;
-    max-height: 40vh;
+    max-height: 40vh; /* This might need adjustment with expanded state */
     font-size: 0.98rem;
   }
   .input {
@@ -155,11 +215,12 @@ p{
   }
 }
 @media (max-width: 400px) {
-  .chatbot {
-    width: 100vw !important;
-    left: 0 !important;
+  /* Ensure these don't apply when .chatbotMinimized is present */
+  .chatbot:not(.chatbotMinimized) {
+    width: 100vw;
+    left: 0;
     border-radius: 0;
-    height: 70vh !important;
+    height: 70vh;
   }
   .header {
     font-size: 0.95rem;
@@ -175,34 +236,24 @@ p{
   cursor: pointer;
   padding: 0 6px;
   transition: color 0.2s;
+  margin-left: 8px; /* This was in the original inline style, re-adding as it was missed in previous CSS merge */
 }
 
 .expandBtn:hover {
   color: #ffe066;
 }
 
-/* Expanded state */
-.chatbot[style*='height: 80vh'] {
-  height: 80vh !important;
-  max-height: 80vh;
-}
-
-.chatbot[style*='height: 80vh'] .messages {
-  max-height: calc(80vh - 120px);
-}
-
-.chatbot[style*='width: 50vw'] {
-  right: 25vw;
-  left: 25vw;
-  width: 50vw !important;
-  max-width: 800px;
-}
-
-.chatbot[style*='width: 50vw'] .messages {
-  max-width: 90%;
-}
-
+/* Expanded state styles are now in .chatbotExpanded and its media queries */
+/* Removed:
+.chatbot[style*='height: 80vh'] { ... }
+.chatbot[style*='height: 80vh'] .messages { ... }
+.chatbot[style*='width: 50vw'] { ... }
+.chatbot[style*='width: 50vw'] .messages { ... }
 .chatbot[style*='width: 50vw'] .botMsg,
-.chatbot[style*='width: 50vw'] .userMsg {
-  max-width: 70%;
+.chatbot[style*='width: 50vw'] .userMsg { ... }
+*/
+
+.resetBtn {
+  /* Existing styles */
+  margin-left: 8px; /* Added from inline style */
 } 

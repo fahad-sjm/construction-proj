@@ -2,6 +2,7 @@
   display: flex;
   gap: 24px;
   margin-bottom: 32px;
+  flex-wrap: wrap; /* Allow wrapping for medium screens if needed */
 }
 .card, .cardHighlight {
   background: #fff;
@@ -28,3 +29,51 @@
   font-size: 1.08rem;
   color: #6b7280;
 } 
+
+/* Responsive adjustments */
+@media (max-width: 900px) { /* Adjust breakpoint as needed, e.g., 768px */
+  .cardsRow {
+    gap: 16px; /* Reduce gap for smaller screens */
+  }
+  .card, .cardHighlight {
+    padding: 20px 24px;
+    min-width: 140px; /* Adjust min-width */
+  }
+  .value {
+    font-size: 1.8rem;
+  }
+  .label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 700px) { /* Stack cards in a column */
+  .cardsRow {
+    flex-direction: column;
+    align-items: stretch; /* Make cards take full width available in column */
+    gap: 16px;
+  }
+  .card, .cardHighlight {
+    width: auto; /* Reset width to allow stretching */
+    min-width: unset; /* Remove min-width when stacked */
+    padding: 18px 20px;
+  }
+  .value {
+    font-size: 1.7rem;
+  }
+  .label {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) { /* Further adjustments for very small screens */
+  .card, .cardHighlight {
+    padding: 16px 18px;
+  }
+  .value {
+    font-size: 1.6rem;
+  }
+  .label {
+    font-size: 0.9rem;
+  }
+}

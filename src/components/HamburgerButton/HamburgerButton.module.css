@@ -1,0 +1,40 @@
+.hamburgerButton {
+  display: none; /* Hidden by default, shown in media query */
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 2500; /* Higher than sidebar to be clickable */
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.hamburgerButton .line {
+  width: 22px;
+  height: 3px;
+  background-color: #333;
+  margin: 4px 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animation for X mark when open */
+.hamburgerButton.open .line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburgerButton.open .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerButton.open .line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 700px) {
+  .hamburgerButton {
+    display: block;
+  }
+}
