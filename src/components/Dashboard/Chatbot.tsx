@@ -99,14 +99,18 @@ const Chatbot: React.FC = () => {
       // Inline styles for zIndex and transitions are kept as they are less about state
       // and more about the fundamental behavior of the component.
       // Or, zIndex could be in styles.chatbot and transition in individual state classes if preferred.
-      // For now, keeping zIndex here as it's a stacking context concern.
+      // For now, keeping zIndex here as it's a stacking context concern. // This comment is now outdated.
       // Transition is also in the main .chatbot class in CSS.
-      style={{
-        zIndex: 1000,
-        // Dynamic variables for expanded state, if needed for JS logic, can be set here
-        // '--expanded-width': `${EXPANDED_WIDTH}px`, // Example if CSS variables are used
-        // '--expanded-height': EXPANDED_HEIGHT, // Example
-      }}
+      // zIndex is now handled by Chatbot.module.css in the .chatbot class.
+      // Dynamic variables for expanded state are not currently used.
+      // If they were, the style attribute would be kept:
+      // style={{
+      //   '--expanded-width': `${EXPANDED_WIDTH}px`,
+      //   '--expanded-height': EXPANDED_HEIGHT,
+      // }}
+      // Since all styles (zIndex, transitions) are now in Chatbot.module.css,
+      // and dynamic CSS variables are not currently used,
+      // the style attribute can be removed.
     >
       <div
         className={styles.header}

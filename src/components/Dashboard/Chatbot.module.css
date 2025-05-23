@@ -206,12 +206,12 @@ p{
     font-size: 0.98rem;
   }
   .input {
-    font-size: 0.98rem;
-    padding: 10px 10px;
+    font-size: 0.95rem; /* Slightly reduced from 0.98rem */
+    padding: 9px 10px; /* Slightly reduced from 10px 10px */
   }
   .sendBtn {
-    font-size: 1rem;
-    padding: 0 10px;
+    font-size: 0.95rem; /* Slightly reduced from 1rem, ensure tap target is still good */
+    padding: 0 10px; /* Kept padding, height is driven by input field */
   }
 }
 @media (max-width: 400px) {
@@ -225,6 +225,19 @@ p{
   .header {
     font-size: 0.95rem;
     padding: 8px 6px;
+  }
+  /* Specific adjustments for input area on very small screens */
+  .inputRow {
+    /* Optionally, reduce border-top thickness if needed, but usually minor */
+    /* border-top-width: 0.5px; */
+  }
+  .input {
+    font-size: 0.9rem;  /* Further reduce font size */
+    padding: 8px 10px; /* Further reduce padding */
+  }
+  .sendBtn {
+    font-size: 0.9rem; /* Match input font size or keep slightly larger for prominence */
+    padding: 0 8px;   /* Further reduce padding */
   }
 }
 

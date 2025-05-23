@@ -20,6 +20,7 @@
     z-index: 2000; /* Ensure it's above other content like chatbot */
     transform: translateX(-100%); /* Hidden by default */
     box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional: add shadow when open */
+    overflow-y: auto; /* Allow sidebar content to scroll if needed */
   }
 
   .sidebarOpen {
