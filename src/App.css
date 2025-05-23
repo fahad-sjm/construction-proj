@@ -11,7 +11,7 @@ html {
   display: flex;
   min-height: 100vh;
   background: #f3f4f6;
-  position: relative; /* Add position relative for proper overlay positioning */
+  position: relative;
 }
 .mainContent {
   flex: 1;
@@ -20,14 +20,24 @@ html {
   flex-direction: column;
   min-width: 0;
   transition: all 0.3s ease-in-out;
+  margin-left: 250px; /* Add margin for sidebar */
+  margin-top: 72px; /* Add margin for fixed header */
 }
 .dashboardHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 32px;
   gap: 16px;
-  position: relative;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 250px; /* Account for sidebar width */
+  background: #f3f4f6;
+  padding: 16px 48px;
+  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  height: 72px; /* Fixed height for header */
+  transition: all 0.3s ease-in-out;
 }
 .searchBar {
   background: #fff;
@@ -57,6 +67,12 @@ html {
 @media (max-width: 1024px) {
   .mainContent {
     padding: 24px 32px;
+    margin-left: 0; /* Remove margin when sidebar is hidden */
+  }
+
+  .dashboardHeader {
+    left: 0;
+    padding: 16px 32px;
   }
 
   .searchBar {
@@ -71,7 +87,7 @@ html {
   }
 
   .dashboardHeader {
-    margin-bottom: 24px;
+    padding: 16px 24px;
   }
 
   .searchBar {
@@ -87,8 +103,7 @@ html {
   }
 
   .dashboardHeader {
-    flex-wrap: nowrap;
-    gap: 12px;
+    padding: 16px 20px;
   }
 
   .searchBar {
@@ -101,14 +116,14 @@ html {
 @media (max-width: 480px) {
   .mainContent {
     padding: 16px;
+    margin-top: 64px; /* Match header height */
   }
 
   .dashboardHeader {
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-    padding-left: 48px; /* Space for hamburger button */
+    padding: 12px 16px;
+    height: 64px;
+    left: 0; /* Full width on mobile */
+    transition: all 0.3s ease-in-out;
   }
 
   .searchBar {
@@ -116,15 +131,27 @@ html {
     min-width: 0;
     padding: 10px 14px;
     font-size: 0.95rem;
+    position: relative; /* Ensure search bar stays in place */
+    z-index: 1001; /* Keep above overlay */
   }
 
   .profilePic {
     flex-shrink: 0;
+    position: relative; /* Ensure profile pic stays in place */
+    z-index: 1001; /* Keep above overlay */
   }
 
   .profilePic img {
     width: 40px;
     height: 40px;
+  }
+
+  /* Fix chatbox positioning */
+  .chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1002; /* Keep above header and overlay */
   }
 }
 
@@ -135,8 +162,8 @@ html {
   }
 
   .dashboardHeader {
-    gap: 8px;
-    padding-left: 44px;
+    padding: 12px;
+    height: 60px; /* Even smaller height for small mobile */
   }
 
   .profilePic img {

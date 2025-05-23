@@ -35,7 +35,7 @@ const App: React.FC = () => {
     <Provider store={store}>
       <div className="appRoot">
         <HamburgerButton onClick={toggleSidebar} isOpen={isSidebarOpen} />
-        <Sidebar className={isSidebarOpen ? sidebarStyles.sidebarOpen : ''} />
+        <Sidebar className={isSidebarOpen ? sidebarStyles.open : ''} />
         {isMobile && (
           <div 
             className={`overlay ${isSidebarOpen ? 'visible' : ''}`} 

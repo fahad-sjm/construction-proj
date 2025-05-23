@@ -1,8 +1,8 @@
 .hamburgerButton {
   display: none; /* Hidden by default, shown in media query */
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
+  top: 16px;
+  left: 16px;
   z-index: 2500;
   background: #fff;
   border: none;
@@ -43,13 +43,13 @@
 @media (max-width: 1024px) {
   .hamburgerButton {
     display: block;
-    left: 16px;
   }
 }
 
 /* Tablets and large phones */
 @media (max-width: 768px) {
   .hamburgerButton {
+    top: 12px;
     left: 12px;
     padding: 8px;
   }
@@ -63,6 +63,7 @@
 /* Mobile phones */
 @media (max-width: 480px) {
   .hamburgerButton {
+    top: 8px;
     left: 8px;
     padding: 8px;
   }
@@ -77,6 +78,7 @@
 /* Small mobile phones */
 @media (max-width: 360px) {
   .hamburgerButton {
+    top: 6px;
     left: 6px;
     padding: 7px;
   }
