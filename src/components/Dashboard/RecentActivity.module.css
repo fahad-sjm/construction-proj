@@ -2,11 +2,12 @@
   display: flex;
   gap: 32px;
   margin-bottom: 32px;
+  flex-wrap: wrap;
 }
 .activityCard {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(30,40,90,0.06);
+  box-shadow: 0 2px 8px rgba(30, 40, 90, 0.06);
   padding: 24px 32px;
   min-width: 340px;
   flex: 1;
@@ -21,7 +22,8 @@
   border-collapse: collapse;
   font-size: 1rem;
 }
-.table th, .table td {
+.table th,
+.table td {
   padding: 8px 10px;
   text-align: left;
 }
@@ -32,4 +34,96 @@
 }
 .table tr:not(:last-child) td {
   border-bottom: 1px solid #e5e7eb;
-} 
+}
+
+/* Tablet and smaller desktop */
+@media (max-width: 1024px) {
+  .activityRow {
+    gap: 24px;
+  }
+
+  .activityCard {
+    padding: 20px 24px;
+  }
+}
+
+/* Tablets and large phones */
+@media (max-width: 768px) {
+  .activityRow {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .activityCard {
+    min-width: unset;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .table {
+    font-size: 0.95rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .activityRow {
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .activityCard {
+    padding: 16px;
+  }
+
+  .cardTitle {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+
+  .table {
+    font-size: 0.9rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 6px 8px;
+  }
+
+  /* Make table more mobile-friendly */
+  .table thead {
+    display: none;
+  }
+
+  .table tbody tr {
+    display: block;
+    margin-bottom: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 8px;
+  }
+
+  .table td {
+    display: block;
+    text-align: right;
+    padding: 4px 8px;
+    position: relative;
+    border-bottom: none;
+  }
+
+  .table td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .table td:last-child {
+    border-bottom: none;
+  }
+}

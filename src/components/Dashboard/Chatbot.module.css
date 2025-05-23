@@ -6,77 +6,47 @@
   height: 400px;
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(30,40,90,0.13);
+  box-shadow: 0 4px 24px rgba(30, 40, 90, 0.13);
   display: flex;
   flex-direction: column;
   z-index: 1000;
   overflow: hidden;
-  /* transition: box-shadow 0.2s, height 0.3s ease-in-out; */ /* Will be handled by individual state classes */
-  transition: box-shadow 0.2s, width 0.3s, height 0.3s ease-in-out;
-  min-width: 260px; /* from inline style */
+  transition: all 0.3s ease-in-out;
+  min-width: 260px;
 }
 
 .chatbotDefault {
-  width: 340px; /* DEFAULT_WIDTH */
-  height: 400px; /* DEFAULT_HEIGHT */
-  min-height: 200px; /* from inline style */
+  width: 340px;
+  height: 400px;
+  min-height: 200px;
 }
 
-/* Add .chatbot class to increase specificity */
 .chatbot.chatbotMinimized {
-  width: 260px; /* Removed !important */
-  height: 48px; /* Removed !important */
-  min-height: 48px; /* Removed !important */
-  box-shadow: 0 2px 8px rgba(30,40,90,0.10);
+  width: 260px;
+  height: 48px;
+  min-height: 48px;
+  box-shadow: 0 2px 8px rgba(30, 40, 90, 0.1);
 }
 
 .chatbot.chatbotMinimized .header {
-  border-radius: 16px; /* Adjusted from 16px 16px 16px 16px */
+  border-radius: 16px;
 }
 
 .chatbot.chatbotMinimized .messages,
 .chatbot.chatbotMinimized .inputRow {
-  display: none; /* Removed !important */
+  display: none;
 }
 
 .chatbotExpanded {
-  width: var(--expanded-width, 500px); /* EXPANDED_WIDTH */
-  height: var(--expanded-height, 80vh); /* EXPANDED_HEIGHT */
-  min-height: 200px; /* from inline style */
-}
-
-/* Adjustments for expanded state flexibility */
-.chatbotExpanded {
-  /* Default for larger screens */
-  width: 500px; /* EXPANDED_WIDTH */
-  height: 80vh;   /* EXPANDED_HEIGHT */
-  max-width: 90vw; /* Ensure it doesn't get too wide on very large screens */
-  max-height: 90vh;/* Ensure it doesn't get too tall */
+  width: 500px;
+  height: 80vh;
+  min-height: 200px;
+  max-width: 90vw;
+  max-height: 90vh;
 }
 
 .chatbotExpanded .messages {
-  max-height: calc(var(--expanded-height, 80vh) - 120px); /* Adjust based on actual header/input height */
-}
-
-/* For smaller screens, make expanded state more responsive */
-@media (max-width: 768px) {
-  .chatbotExpanded {
-    width: 90vw;
-    height: 75vh;
-  }
-  .chatbotExpanded .messages {
-    max-height: calc(75vh - 120px);
-  }
-}
-
-@media (max-width: 480px) {
-  .chatbotExpanded {
-    width: 95vw;
-    height: 70vh;
-  }
-  .chatbotExpanded .messages {
-    max-height: calc(70vh - 110px); /* Assuming header/input might be slightly smaller */
-  }
+  max-height: calc(80vh - 120px);
 }
 
 .header {
@@ -89,31 +59,39 @@
   font-weight: 600;
   font-size: 1.08rem;
   justify-content: space-between;
-  user-select: none; /* Moved from inline style */
+  user-select: none;
 }
+
 .botIcon {
   font-size: 1.3rem;
 }
-.closeBtn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.3rem;
-  cursor: pointer;
-  padding: 0 6px;
-}
-.resetBtn {
+
+.closeBtn,
+.resetBtn,
+.expandBtn {
   background: none;
   border: none;
   color: #fff;
   font-size: 1.2rem;
   cursor: pointer;
   padding: 0 6px;
-  transition: color 0.2s;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
 }
+
 .resetBtn:hover {
   color: #ffe066;
 }
+
+.expandBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
 .messages {
   padding: 18px;
   flex: 1 1 auto;
@@ -122,12 +100,14 @@
   gap: 10px;
   overflow-y: auto;
   background: #f3f4f6;
+  -webkit-overflow-scrolling: touch;
 }
 
-p{
+p {
   margin: 0;
   padding: 5px;
 }
+
 .botMsg {
   align-self: flex-start;
   background: #e0e7ff;
@@ -136,7 +116,9 @@ p{
   border-radius: 12px 12px 12px 4px;
   max-width: 80%;
   font-size: 1rem;
+  word-break: break-word;
 }
+
 .userMsg {
   align-self: flex-end;
   background: #2563eb;
@@ -145,20 +127,27 @@ p{
   border-radius: 12px 12px 4px 12px;
   max-width: 80%;
   font-size: 1rem;
+  word-break: break-word;
 }
+
 .inputRow {
   display: flex;
   border-top: 1px solid #e5e7eb;
   background: #fff;
+  padding: 8px;
 }
+
 .input {
   flex: 1;
-  border: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
   padding: 12px 16px;
   font-size: 1rem;
   outline: none;
   background: #fff;
+  margin-right: 8px;
 }
+
 .sendBtn {
   background: #2563eb;
   color: #fff;
@@ -166,94 +155,180 @@ p{
   padding: 0 18px;
   font-size: 1.2rem;
   cursor: pointer;
-  border-radius: 0 0 16px 0;
+  border-radius: 8px;
   transition: background 0.2s;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .sendBtn:hover {
   background: #1e40af;
 }
 
-/* Minimized state styles are now in .chatbotMinimized */
-/* Removed:
-.chatbot[style*='height: 48px'] { ... }
-.chatbot[style*='height: 48px'] .header { ... }
-.chatbot[style*='height: 48px'] .messages,
-.chatbot[style*='height: 48px'] .inputRow { ... }
-*/
-
-@media (max-width: 600px) {
-  /* Apply default responsive styles also when expanded, unless overridden by .chatbotExpanded specific media queries */
-  /* Ensure these don't apply when .chatbotMinimized is present */
-  .chatbot:not(.chatbotMinimized) {
-    width: 98vw;
-    min-width: 0;
-    left: 1vw;
-    right: auto;
-    height: 60vh;
-    min-height: 200px;
-    top: auto;
-    bottom: 1vh;
-    border-radius: 12px;
-  }
-  .header {
-    font-size: 1rem;
-    padding: 10px 12px;
-  }
-  /* Ensure these don't apply when .chatbotMinimized is present */
-  .chatbot:not(.chatbotMinimized) .messages {
-    padding: 10px;
-    max-height: 40vh; /* This might need adjustment with expanded state */
-    font-size: 0.98rem;
-  }
-  .input {
-    font-size: 0.98rem;
-    padding: 10px 10px;
-  }
-  .sendBtn {
-    font-size: 1rem;
-    padding: 0 10px;
+/* Tablet and smaller desktop */
+@media (max-width: 1024px) {
+  .chatbot {
+    bottom: 24px;
+    right: 24px;
   }
 }
-@media (max-width: 400px) {
-  /* Ensure these don't apply when .chatbotMinimized is present */
+
+/* Tablets and large phones */
+@media (max-width: 768px) {
   .chatbot:not(.chatbotMinimized) {
-    width: 100vw;
-    left: 0;
-    border-radius: 0;
+    width: calc(100% - 32px);
+    right: 16px;
+    bottom: 16px;
     height: 70vh;
   }
+
+  .chatbotExpanded {
+    width: calc(100% - 32px);
+    height: 80vh;
+  }
+
   .header {
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+
+  .messages {
+    padding: 16px;
+  }
+
+  .botMsg,
+  .userMsg {
+    max-width: 85%;
     font-size: 0.95rem;
-    padding: 8px 6px;
   }
 }
 
-.expandBtn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0 6px;
-  transition: color 0.2s;
-  margin-left: 8px; /* This was in the original inline style, re-adding as it was missed in previous CSS merge */
+/* Mobile phones */
+@media (max-width: 480px) {
+  .chatbot:not(.chatbotMinimized) {
+    width: calc(100% - 32px);
+    height: 70vh;
+    right: 16px;
+    bottom: 16px;
+    border-radius: 16px;
+    max-height: 600px;
+  }
+
+  .chatbot.chatbotMinimized {
+    width: 200px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .chatbotExpanded {
+    width: calc(100% - 32px);
+    height: 80vh;
+    max-height: 600px;
+    border-radius: 16px;
+  }
+
+  .header {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  .botIcon {
+    font-size: 1.2rem;
+  }
+
+  .closeBtn,
+  .resetBtn,
+  .expandBtn {
+    font-size: 1.1rem;
+    min-width: 28px;
+    min-height: 28px;
+  }
+
+  .messages {
+    padding: 12px;
+  }
+
+  .botMsg,
+  .userMsg {
+    max-width: 90%;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  .inputRow {
+    padding: 8px 12px;
+  }
+
+  .input {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+
+  .sendBtn {
+    padding: 0 16px;
+    font-size: 1.1rem;
+    min-width: 44px;
+  }
 }
 
-.expandBtn:hover {
-  color: #ffe066;
+/* Small mobile phones */
+@media (max-width: 360px) {
+  .chatbot:not(.chatbotMinimized) {
+    width: calc(100% - 24px);
+    height: 65vh;
+    right: 12px;
+    bottom: 12px;
+    max-height: 500px;
+  }
+
+  .chatbot.chatbotMinimized {
+    width: 180px;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .chatbotExpanded {
+    width: calc(100% - 24px);
+    height: 75vh;
+    max-height: 500px;
+  }
+
+  .header {
+    padding: 10px;
+  }
+
+  .botIcon {
+    font-size: 1.1rem;
+  }
+
+  .closeBtn,
+  .resetBtn,
+  .expandBtn {
+    font-size: 1rem;
+    min-width: 24px;
+    min-height: 24px;
+  }
+
+  .messages {
+    padding: 10px;
+  }
+
+  .botMsg,
+  .userMsg {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+
+  .input {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  .sendBtn {
+    padding: 0 12px;
+    font-size: 1rem;
+    min-width: 40px;
+  }
 }
-
-/* Expanded state styles are now in .chatbotExpanded and its media queries */
-/* Removed:
-.chatbot[style*='height: 80vh'] { ... }
-.chatbot[style*='height: 80vh'] .messages { ... }
-.chatbot[style*='width: 50vw'] { ... }
-.chatbot[style*='width: 50vw'] .messages { ... }
-.chatbot[style*='width: 50vw'] .botMsg,
-.chatbot[style*='width: 50vw'] .userMsg { ... }
-*/
-
-.resetBtn {
-  /* Existing styles */
-  margin-left: 8px; /* Added from inline style */
-} 

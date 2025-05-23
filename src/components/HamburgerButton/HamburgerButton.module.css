@@ -1,22 +1,28 @@
 .hamburgerButton {
   display: none; /* Hidden by default, shown in media query */
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  z-index: 2500; /* Higher than sidebar to be clickable */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2500;
   background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.hamburgerButton:hover {
+  background: #f8fafc;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 .hamburgerButton .line {
   width: 22px;
-  height: 3px;
-  background-color: #333;
-  margin: 4px 0;
+  height: 2px;
+  background-color: #1e293b;
+  margin: 5px 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -33,8 +39,50 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 700px) {
+/* Tablet and smaller desktop */
+@media (max-width: 1024px) {
   .hamburgerButton {
     display: block;
+    left: 16px;
+  }
+}
+
+/* Tablets and large phones */
+@media (max-width: 768px) {
+  .hamburgerButton {
+    left: 12px;
+    padding: 8px;
+  }
+
+  .hamburgerButton .line {
+    width: 20px;
+    margin: 4px 0;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .hamburgerButton {
+    left: 8px;
+    padding: 8px;
+  }
+
+  .hamburgerButton .line {
+    width: 18px;
+    height: 2px;
+    margin: 3px 0;
+  }
+}
+
+/* Small mobile phones */
+@media (max-width: 360px) {
+  .hamburgerButton {
+    left: 6px;
+    padding: 7px;
+  }
+
+  .hamburgerButton .line {
+    width: 16px;
+    margin: 3px 0;
   }
 }

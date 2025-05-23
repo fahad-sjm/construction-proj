@@ -24,8 +24,8 @@ const RecentActivity: React.FC = () => (
         <tbody>
           {recentActivity.map((item, idx) => (
             <tr key={idx}>
-              <td>{item.date}</td>
-              <td>{item.description}</td>
+              <td data-label="Date">{item.date}</td>
+              <td data-label="Description">{item.description}</td>
             </tr>
           ))}
         </tbody>
@@ -40,8 +40,8 @@ const RecentActivity: React.FC = () => (
         <tbody>
           {delayedTasks.map((item, idx) => (
             <tr key={idx}>
-              <td>{item.task}</td>
-              <td>{item.due}</td>
+              <td data-label="Task">{item.task}</td>
+              <td data-label="Due Date">{item.due}</td>
             </tr>
           ))}
         </tbody>
